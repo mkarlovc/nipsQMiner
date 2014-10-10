@@ -117,7 +117,7 @@ We now list some of the notable features of QMiner.
 
 \textbf{Connecting storage, indexing and analytics:} QMiner stores and indexes the data in a way that makes the implemented machine learning methods more scalable. Computing feature vectors from stored records aims at reducing duplication of data in the process and relies heavily on the integrated indexing and its features (e.g. probabilistic joins) to make the transformations faster. Data schemas provide types for directly storing vectors and sparse vectors as part of records.
 
-\textbf{Multimodal data support:} QMiner provides native support for handling and learning from unstructured data such as text or graphs. For example, full text search, aggregation over text fields, creating and storing bag-of-words vectors directly in the data stores, and full integration of Stanford graph analysis library SNAP in the C++ and JavaScript APIs
+\textbf{Multimodal data support:} QMiner provides native support for handling and learning from unstructured data such as text or graphs. For example, full text search, aggregation over text fields, creating and storing bag-of-words vectors directly in the data stores, and full integration of Stanford graph analysis library SNAP\cite{snap} in the C++ and JavaScript APIs
 
 \textbf{Processing streaming data:} QMiner provides building blocks for processing and learning from streams of text documents, website logs or numeric streams. For example, pipeline-able stream aggregates for maintaining aggregate statistics over the stream, and machine learning algorithms for learning from stream.
 
@@ -215,7 +215,7 @@ The example involves two \emph{data stores}: \texttt{Raw} and \texttt{Resampled}
 
 
 \subsection{Graph analysis}
-QMiner supports handling of graph data by providing JavaScript API for the integrated SNAP library \cite{snap}.
+QMiner supports handling of graph data by providing JavaScript API for the integrated SNAP library.
 The script in code fragment 3 is an example of loading a graph, computing communities and visualizing the results.
 
 After importing the required modules for graph analysis and visualization, an edge-list graph file is loaded into a new undirected graph. The graph represents co-authoring network of Slovenian researchers from biotechnical science in 2013. Nodes of the graph represent researchers, while edges between nodes indicate co-authoring of at least on publication. Real networks often have community structure with several regions of internally densely connected nodes. Communities in co-authoring network can indicate groups of strongly connected researchers from a research lab or a similar organization, or simply groups of scientist with a common research interest. Number, sizes and connectivity between communities reveals the cohesiveness of a network. Following the simplification of the graph by removing weekly connected nodes (with degree 3 or less), the Clauset-Newman-Moore \cite{clauset-newman-moore} community detection algorithm is applied to compute communities. In the final step the graph is plotted using force-directed layout, with node colors corresponding to communities. The complete script in Code fragment 3 is written in JavaScript, but some of the components, such as community detection algorithm are executing in highly optimized C++ SNAP code.
